@@ -9,13 +9,16 @@ import TechStack from './components/TechStack';
 import Testimonials from './components/Testimonials';
 import ContactSection from './components/ContactSection';
 import Footer from './components/Footer';
-import { MessageCircle, PhoneCall } from 'lucide-react';
+import LocationsModal from './components/LocationsModal';
+import { MessageCircle, PhoneCall, MapPin } from 'lucide-react';
 
 export default function App() {
+  const [isLocationsOpen, setIsLocationsOpen] = useState(false);
+
   return (
     <div className="min-h-screen bg-[#0A0E17] text-slate-100 flex flex-col selection:bg-brand-500 selection:text-white">
       {/* Navigation */}
-      <Navbar />
+      <Navbar onOpenLocations={() => setIsLocationsOpen(true)} />
 
       {/* Main Content Sections */}
       <main className="flex-1">
@@ -26,14 +29,30 @@ export default function App() {
         <Estimator />
         <TechStack />
         <Testimonials />
-        <ContactSection />
+        <ContactSection onOpenLocations={() => setIsLocationsOpen(true)} />
       </main>
 
       {/* Footer */}
-      <Footer />
+      <Footer onOpenLocations={() => setIsLocationsOpen(true)} />
+
+      {/* Interactive Google Maps & Branches Modal */}
+      <LocationsModal
+        isOpen={isLocationsOpen}
+        onClose={() => setIsLocationsOpen(false)}
+      />
 
       {/* Floating Quick WhatsApp Button */}
-      <aside aria-label="WhatsApp Quick Contact" className="fixed bottom-6 right-6 z-40">
+      <aside aria-label="WhatsApp Quick Contact" className="fixed bottom-6 right-6 z-40 flex flex-col items-end gap-3">
+        {/* Floating Google Maps Location Shortcut */}
+        <button
+          onClick={() => setIsLocationsOpen(true)}
+          className="flex items-center gap-2 px-3.5 py-2.5 rounded-full bg-[#0c162d] text-cyan-300 border border-cyan-700/60 shadow-xl hover:bg-cyan-950 hover:scale-105 transition-all duration-200 text-xs font-bold"
+          aria-label="Buka Lokasi & Google Maps"
+        >
+          <MapPin className="w-4 h-4 text-cyan-400 animate-bounce" />
+          <span className="hidden sm:inline-block">Lokasi Google Maps</span>
+        </button>
+
         <a
           href="https://wa.me/6281234567890?text=Halo%20DutaGlobalTech,%20saya%20ingin%20konsultasi%20layanan%20Website%20/%20ERP%20/%20Produk%20Digital."
           target="_blank"

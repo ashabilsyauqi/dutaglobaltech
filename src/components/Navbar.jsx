@@ -12,7 +12,7 @@ import {
   Briefcase
 } from 'lucide-react';
 
-export default function Navbar({ onOpenContact }) {
+export default function Navbar({ onOpenContact, onOpenLocations }) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -35,6 +35,7 @@ export default function Navbar({ onOpenContact }) {
     { name: 'Portofolio', href: '#portfolio' },
     { name: 'Estimasi Biaya', href: '#estimator' },
     { name: 'Tentang Kami', href: '#tech-stack' },
+    { name: 'Kontak', href: '#contact' },
     { name: 'FAQ', href: '#faq' },
   ];
 
@@ -90,7 +91,7 @@ export default function Navbar({ onOpenContact }) {
                 key={link.name}
                 href={link.href}
                 onClick={(e) => handleNavClick(e, link.href)}
-                className="px-4 py-1.5 text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800/80 rounded-full transition-all duration-200"
+                className="px-3.5 py-1.5 text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800/80 rounded-full transition-all duration-200"
               >
                 {link.name}
               </a>
@@ -98,15 +99,24 @@ export default function Navbar({ onOpenContact }) {
           </nav>
 
           {/* Action CTA */}
-          <div className="hidden lg:flex items-center gap-3">
+          <div className="hidden lg:flex items-center gap-2.5">
+            {onOpenLocations && (
+              <button
+                onClick={onOpenLocations}
+                className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full text-xs font-bold text-cyan-300 bg-cyan-950/80 hover:bg-cyan-900 border border-cyan-700/60 transition-all shadow-sm"
+              >
+                <span>📍 Lokasi & Maps</span>
+              </button>
+            )}
+
             <a
               href="https://wa.me/6281234567890?text=Halo%20DutaGlobalTech,%20saya%20tertarik%20konsultasi%20layanan%20IT%20/%20ERP%20/%20Website."
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold text-white bg-gradient-to-r from-brand-500 to-emerald-600 hover:from-brand-400 hover:to-emerald-500 shadow-lg shadow-brand-500/25 hover:shadow-brand-500/40 hover:-translate-y-0.5 transition-all duration-200"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs sm:text-sm font-semibold text-white bg-gradient-to-r from-brand-500 to-emerald-600 hover:from-brand-400 hover:to-emerald-500 shadow-lg shadow-brand-500/25 hover:shadow-brand-500/40 hover:-translate-y-0.5 transition-all duration-200"
             >
-              <PhoneCall className="w-4 h-4" />
-              <span>Konsultasi Gratis</span>
+              <PhoneCall className="w-3.5 h-3.5" />
+              <span>Konsultasi</span>
             </a>
           </div>
 
@@ -139,7 +149,19 @@ export default function Navbar({ onOpenContact }) {
                 <ChevronRight className="w-4 h-4 opacity-50" />
               </a>
             ))}
-            <div className="pt-2 border-t border-slate-800 mt-1">
+            <div className="pt-2 border-t border-slate-800 mt-1 space-y-2">
+              {onOpenLocations && (
+                <button
+                  type="button"
+                  onClick={() => {
+                    setMobileMenuOpen(false);
+                    onOpenLocations();
+                  }}
+                  className="w-full flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl text-xs font-bold text-cyan-300 bg-cyan-950/90 border border-cyan-800/80 hover:bg-cyan-900 shadow-md"
+                >
+                  <span>📍 Lokasi Kantor & Cabang Google Maps</span>
+                </button>
+              )}
               <a
                 href="https://wa.me/6281234567890?text=Halo%20DutaGlobalTech,%20saya%20tertarik%20konsultasi%20layanan%20IT%20/%20ERP%20/%20Website."
                 target="_blank"

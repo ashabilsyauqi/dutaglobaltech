@@ -11,7 +11,7 @@ import {
   Heart
 } from 'lucide-react';
 
-export default function Footer() {
+export default function Footer({ onOpenLocations }) {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -44,6 +44,30 @@ export default function Footer() {
             <p className="text-xs sm:text-sm text-slate-400 leading-relaxed max-w-sm">
               Perusahaan penyedia solusi teknologi digital, jasa pembuatan website berkinerja tinggi, sistem ERP enterprise kustom, dan aplikasi mobile handal di Indonesia.
             </p>
+
+            <div className="space-y-1.5 text-xs text-slate-400 pt-1">
+              <div className="flex items-start gap-2">
+                <MapPin className="w-3.5 h-3.5 text-cyan-400 flex-shrink-0 mt-0.5" />
+                <span>Jl. Percetakan Negara Raya No. 128, Cempaka Putih, Jakarta Pusat 10570</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Phone className="w-3.5 h-3.5 text-brand-400 flex-shrink-0" />
+                <span>021-4288-9999 / +62 812-3456-7890</span>
+              </div>
+            </div>
+
+            <div className="flex items-center gap-2 pt-2">
+              {onOpenLocations && (
+                <button
+                  type="button"
+                  onClick={onOpenLocations}
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold text-cyan-300 bg-cyan-950/80 border border-cyan-800 hover:bg-cyan-900 transition-colors"
+                >
+                  <MapPin className="w-3 h-3 text-cyan-400" />
+                  <span>Lihat Google Maps & Cabang</span>
+                </button>
+              )}
+            </div>
 
             <div className="flex items-center gap-3 pt-2">
               <a

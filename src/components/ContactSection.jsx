@@ -11,7 +11,7 @@ import {
   Building
 } from 'lucide-react';
 
-export default function ContactSection() {
+export default function ContactSection({ onOpenLocations }) {
   const [formData, setFormData] = useState({
     name: '',
     company: '',
@@ -97,15 +97,61 @@ export default function ContactSection() {
                 <div className="w-12 h-12 rounded-2xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center text-purple-400 flex-shrink-0">
                   <MapPin className="w-5 h-5" />
                 </div>
-                <div>
-                  <span className="text-xs text-slate-400 block mb-0.5">Kantor Operasional</span>
+                <div className="flex-1">
+                  <span className="text-xs text-slate-400 block mb-0.5">Kantor Pusat & Tech Hub (HQ)</span>
                   <div className="text-sm font-semibold text-white">
-                    Cyber Tower Technology Hub, Lt. 8
+                    Jl. Percetakan Negara Raya No. 128
                   </div>
                   <p className="text-xs text-slate-400 mt-0.5">
-                    Jl. HR Rasuna Said, Jakarta Selatan, Indonesia
+                    Cempaka Putih, Jakarta Pusat 10570, Indonesia
                   </p>
+                  
+                  {/* Google Maps Actions */}
+                  <div className="mt-3 flex flex-wrap items-center gap-2">
+                    <a
+                      href="https://www.google.com/maps/search/?api=1&query=Jl.+Percetakan+Negara+Raya+No.+128,+Cempaka+Putih,+Jakarta+Pusat+10570"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold text-white bg-blue-600 hover:bg-blue-500 transition-colors shadow-sm"
+                    >
+                      <MapPin className="w-3.5 h-3.5 text-cyan-300" />
+                      <span>Buka Google Maps</span>
+                    </a>
+                    
+                    {onOpenLocations && (
+                      <button
+                        type="button"
+                        onClick={onOpenLocations}
+                        className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold text-cyan-300 bg-cyan-950/70 border border-cyan-700/50 hover:bg-cyan-900/60 transition-colors"
+                      >
+                        <span>🏢 Semua Cabang & Workshop</span>
+                      </button>
+                    )}
+                  </div>
                 </div>
+              </div>
+
+              {/* Embedded Google Maps Live Mini Frame */}
+              <div className="rounded-2xl overflow-hidden border border-slate-800 shadow-md h-44 relative group">
+                <iframe
+                  title="Peta Lokasi Google Maps DutaGlobalTech"
+                  src="https://maps.google.com/maps?q=Jl.%20Percetakan%20Negara%20Raya%20No.%20128,%20Cempaka%20Putih,%20Jakarta%20Pusat%2010570&t=&z=15&ie=UTF8&iwloc=&output=embed"
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0 }}
+                  allowFullScreen=""
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  className="filter grayscale-[20%] contrast-125"
+                />
+                <a
+                  href="https://www.google.com/maps/search/?api=1&query=Jl.+Percetakan+Negara+Raya+No.+128,+Cempaka+Putih,+Jakarta+Pusat+10570"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="absolute bottom-2 right-2 px-2.5 py-1 rounded-md bg-slate-950/90 text-[11px] font-semibold text-cyan-300 border border-cyan-600/40 backdrop-blur-sm opacity-90 hover:opacity-100 flex items-center gap-1"
+                >
+                  <span>Lihat di Peta Besar</span>
+                </a>
               </div>
 
               <div className="flex items-start gap-4 pt-4 border-t border-slate-800">
@@ -115,9 +161,9 @@ export default function ContactSection() {
                 <div>
                   <span className="text-xs text-slate-400 block mb-0.5">Jam Operasional & SLA</span>
                   <div className="text-sm font-semibold text-white">
-                    Senin - Sabtu: 08.30 - 18.00 WIB
+                    Buka 24 Jam Non-Stop (Layanan Server & Support)
                   </div>
-                  <p className="text-xs text-emerald-400 mt-0.5">24/7 Monitoring Server & Critical Support</p>
+                  <p className="text-xs text-emerald-400 mt-0.5">24/7 Monitoring Server & Respon Cepat</p>
                 </div>
               </div>
 
